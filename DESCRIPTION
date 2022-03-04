@@ -1,0 +1,30 @@
+Package: specimens
+Version: 0.0.1
+Encoding: UTF-8
+Title: Handling Specimen Collections
+Authors@R: c(
+    person("Miguel", "Alvarez", email="kamapu78@gmail.com",
+        role=c("aut","cre"), comment=c(ORCID="0000-0003-1500-1834"))
+	)
+Depends:
+    R(>= 4.0.0)
+Imports:
+	methods,
+    sf
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat
+LazyData: true
+Description:
+	Handling specimen collections in an S4 class called 'specimens'.
+License: file LICENSE
+Roxygen: list(markdown = TRUE)
+URL:
+    https://github.com/kamapu/specimens
+BugReports: https://github.com/kamapu/specimens/issues
+Collate:
+	'imports.R'
+    'specimens-class.R'
+VignetteBuilder: knitr
+RoxygenNote: 7.1.2

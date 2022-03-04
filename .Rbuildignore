@@ -1,0 +1,12 @@
+# eclipse files and folders
+^\.dbeaver$
+^\.git$
+^\.settings$
+^\.gitignore$
+^\.project$
+
+# other files and folders
+^build-pkg$
+^README\.Rmd$
+^README\.md$
+^lab$
