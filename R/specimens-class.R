@@ -110,7 +110,7 @@ setClass("specimens",
       ))
     }
     if (!all(object@specimens$coll_nr %in% object@collections$coll_nr)) {
-      no_fk <- with(objects@specimens, coll_nr[!coll_nr %in%
+      no_fk <- with(object@specimens, coll_nr[!coll_nr %in%
         object@collections$coll_nr])
       return(paste0(
         "Following values for 'coll_nr' in slot 'specimens' ",
@@ -134,7 +134,7 @@ setClass("specimens",
       ))
     }
     if (!all(object@history$spec_id %in% object@specimens$spec_id)) {
-      no_fk <- with(objects@history, spec_id[!spec_id %in%
+      no_fk <- with(object@history, spec_id[!spec_id %in%
         object@specimens$spec_id])
       return(paste0(
         "Following values for 'spec_id' in slot 'history' ",

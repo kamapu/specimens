@@ -44,5 +44,5 @@ showClass("specimens")
 spec <- new("specimens")
 }
 \author{
-Miguel Alvarez
+Miguel Alvarez \email{kamapu@posteo.de}
 }
