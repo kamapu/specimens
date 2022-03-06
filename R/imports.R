@@ -1,2 +1,2 @@
-## #' @importClassesFrom sf sf
+#' @importFrom stats aggregate
 NULL

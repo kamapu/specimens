@@ -10,7 +10,8 @@ Depends:
     R(>= 4.0.0)
 Imports:
 	methods,
-    sf
+	sf,
+	stats
 Suggests:
     knitr,
     rmarkdown,
@@ -26,5 +27,6 @@ BugReports: https://github.com/kamapu/specimens/issues
 Collate:
 	'imports.R'
     'specimens-class.R'
+    'summary.R'
 VignetteBuilder: knitr
 RoxygenNote: 7.1.2

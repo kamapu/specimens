@@ -13,7 +13,8 @@
 #' @slot collections A data frame or an object of class [sf][sf::sf] including
 #'     variables associated to a collection, meaning a sample of a species in a
 #'     locality. Mandatory columns are here **coll_nr** (unique identifier
-#'     of the collection) and **leg** (name of collector).
+#'     of the collection), **leg** (name of collector), and **coll_date**
+#'     (date of collection set as class [Date][as.Date]).
 #' @slot specimens A data frame with information specifical to single specimens.
 #'     It may be one specimen per collection or many (duplicates). This database
 #'     list can contain the final destination of the specimens, in the case of
@@ -28,7 +29,7 @@
 #'     (date of update set as class [Date][as.Date]), and **taxon_name**
 #'     (the scientific name of specimen according to the determinator).
 #'
-#' @author Miguel Alvarez
+#' @author Miguel Alvarez \email{kamapu@@posteo.de}
 #'
 #' @examples
 #' showClass("specimens")
@@ -54,6 +55,7 @@ setClass("specimens",
     collections = data.frame(
       coll_nr = integer(),
       leg = character(),
+      coll_date = as.Date(NULL),
       stringsAsFactors = FALSE
     ),
     specimens = data.frame(
@@ -72,7 +74,7 @@ setClass("specimens",
   # Validity procedures
   validity = function(object) {
     ## slot collections
-    col_names <- c("coll_nr", "leg")
+    col_names <- c("coll_nr", "leg", "coll_date")
     if (!all(col_names %in% names(object@collections))) {
       col_names <- col_names[!col_names %in% names(object@collections)]
       return(paste0(
@@ -84,6 +86,12 @@ setClass("specimens",
       return(paste(
         "Duplicated values for 'coll_nr' in slot 'collections'",
         "are not allowed.'"
+      ))
+    }
+    if (class(object@collections$coll_date) != "Date") {
+      return(paste(
+        "Column 'coll_date' in slot 'collections'",
+        "have to be of class 'Date'."
       ))
     }
     ## slot specimens

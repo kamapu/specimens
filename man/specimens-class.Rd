@@ -18,7 +18,8 @@ collections as well.
 \item{\code{collections}}{A data frame or an object of class \link[sf:sf]{sf} including
 variables associated to a collection, meaning a sample of a species in a
 locality. Mandatory columns are here \strong{coll_nr} (unique identifier
-of the collection) and \strong{leg} (name of collector).}
+of the collection), \strong{leg} (name of collector), and \strong{coll_date}
+(date of collection set as class \link[=as.Date]{Date}).}
 
 \item{\code{specimens}}{A data frame with information specifical to single specimens.
 It may be one specimen per collection or many (duplicates). This database
