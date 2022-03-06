@@ -29,5 +29,6 @@ Collate:
     'specimens-class.R'
     'clean.R'
     'summary.R'
+    'subset.R'
 VignetteBuilder: knitr
 RoxygenNote: 7.1.2
