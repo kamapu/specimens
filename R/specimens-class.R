@@ -133,6 +133,17 @@ setClass("specimens",
         "are not allowed.'"
       ))
     }
+    # Double determination on the same day
+    ddet <- unique(object@history$spec_id[duplicated(object@history[
+      ,
+      c("spec_id", "det_date")
+    ])])
+    if (length(ddet) > 0) {
+      return(paste0(
+        "Multiple determinations on the same day detected for",
+        "following specimes: '", paste0(ddet, collapse = "' '"), "'."
+      ))
+    }
     if (!all(object@history$spec_id %in% object@specimens$spec_id)) {
       no_fk <- with(object@history, spec_id[!spec_id %in%
         object@specimens$spec_id])

@@ -8,7 +8,7 @@
 #' A straight-forward method to coerce objects of class [specimens-class] to
 #' [data.frame]. In the case that the collection is an object of class [sf],
 #' coordinate values will be extracted as **longitude** and **latitude**.
-#' 
+#'
 #' In the case of multiple determinations in the history of a specimen only the
 #' newest one will be included in the data frame.
 #'
