@@ -28,7 +28,6 @@ view_collection <- function(object, format = "%d.%m.%Y") {
   rownames(t1) <- paste(object@collections$coll_nr)
   # Number of specimens per collection
   nr_spec <- aggregate(spec_id ~ coll_nr, data = object@specimens, FUN = length)
-
   nr_spec <- with(nr_spec, paste(spec_id)[match(rownames(t1), paste(coll_nr))])
   nr_spec[is.na(nr_spec)] <- "0"
   t1 <- cbind(t1, paste0("specimens:  ", nr_spec, "\n"))
@@ -38,7 +37,7 @@ view_collection <- function(object, format = "%d.%m.%Y") {
   Det$coll_nr <- with(object@specimens, coll_nr[match(Det$spec_id, spec_id)])
   Det <- split(Det, Det$coll_nr)
   show_det <- function(x) {
-    x <- with(x, paste("", spec_id, taxon_name, paste0(
+    x <- with(x, paste(spec_id, taxon_name, paste0(
       "(det: ", det, ", ",
       format(det_date, format = format), ")\n"
     )))
@@ -46,10 +45,17 @@ view_collection <- function(object, format = "%d.%m.%Y") {
     return(paste0("\n", x))
   }
   Det <- unlist(lapply(Det, show_det))
+  # Adding indetermined specimens
+  indet <- object@specimens[!object@specimens$spec_id %in%
+    object@history$spec_id, c("spec_id", "coll_nr")]
+  indet_n <- indet$coll_nr
+  indet <- with(indet, paste0("\n", spec_id, " indet.\n"))
+  names(indet) <- indet_n
+  Det <- c(Det, indet)
   Det <- Det[match(rownames(t1), names(Det))]
   Det[is.na(Det)] <- ""
   t1 <- cbind(t1, Det)
-  cat(t(t1), "------------------------------\n")
+  cat(c(t(t1), "------------------------------\n"))
 }
 
 #' @name summary
