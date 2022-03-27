@@ -26,8 +26,6 @@ document()
 pkg_loc <- build(path = "build-pkg", args = "--resave-data")
 check_built(path = pkg_loc)
 
-# write manual
+# write manual and install
 build_manual(path = "build-pkg")
-
-# install from local source
 install()
