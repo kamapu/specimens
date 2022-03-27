@@ -40,9 +40,11 @@ view_collection <- function(object, format = "%d.%m.%Y") {
     !object@specimens$spec_id %in% Det$spec_id,
     c("spec_id", "coll_nr")
   ]
-  indet$det_date <- as.Date(NA)
-  indet$taxon_name <- "indet."
-  Det <- insert_rows(Det, indet)
+  if (nrow(indet) > 0) {
+    indet$det_date <- as.Date(NA)
+    indet$taxon_name <- "indet."
+    Det <- insert_rows(Det, indet)
+  }
   Det <- split(Det, Det$coll_nr)
   show_det <- function(x) {
     x <- with(x, paste(spec_id, taxon_name, paste0(
