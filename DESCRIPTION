@@ -9,6 +9,7 @@ Authors@R: c(
 Depends:
     R(>= 4.0.0)
 Imports:
+    leaflet,
 	methods,
 	sf,
 	stats,
@@ -32,5 +33,7 @@ Collate:
     'summary.R'
     'subset.R'
     'as_data.frame.R'
+    'map_specimens.R'
+    'churo_survey-data.R'
 VignetteBuilder: knitr
 RoxygenNote: 7.1.2
