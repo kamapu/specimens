@@ -9,8 +9,10 @@ Authors@R: c(
 Depends:
     R(>= 4.0.0)
 Imports:
+	DT,
     leaflet,
 	methods,
+	shiny,
 	sf,
 	stats,
 	taxlist
@@ -34,6 +36,7 @@ Collate:
     'subset.R'
     'as_data.frame.R'
     'map_specimens.R'
+    'view_table.R'
     'churo_survey-data.R'
 VignetteBuilder: knitr
 RoxygenNote: 7.1.2

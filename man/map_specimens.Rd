@@ -50,6 +50,8 @@ will be clustered.
 This function will coerce to a data fram using the function \code{\link[=as_data.frame]{as_data.frame()}}.
 }
 \examples{
+\dontrun{
 map_specimens(churo_survey)
+}
 
 }

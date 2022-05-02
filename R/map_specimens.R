@@ -38,11 +38,16 @@ map_specimens <- function(x, ...) {
 #' @method map_specimens specimens
 #'
 #' @examples
+#' \dontrun{
 #' map_specimens(churo_survey)
+#' }
 #'
 #' @export
 map_specimens.specimens <- function(x,
-                                    add_cols = c("coll_date", "leg", "taxon_name"),
+                                    add_cols = c(
+                                      "coll_date", "leg",
+                                      "taxon_name"
+                                    ),
                                     sep = " | ",
                                     date_format = "%d.%m.%Y",
                                     coords = c("longitude", "latitude"),
