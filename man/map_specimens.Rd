@@ -13,8 +13,6 @@ map_specimens(x, ...)
   add_cols = c("coll_date", "leg", "taxon_name"),
   sep = " | ",
   date_format = "\%d.\%m.\%Y",
-  coords = c("longitude", "latitude"),
-  crs = 4326,
   p_tiles = "OpenStreetMap",
   ...
 )
@@ -33,21 +31,12 @@ columns in the popup labels.}
 \item{date_format}{A character value indicating the format used for the
 collection date. It is passed to the function \code{\link[=format.Date]{format.Date()}}.}
 
-\item{coords}{A character vector with the names of the columns containing the
-coordinate values. Default adjusted to an object using the \link{sf} at
-the slot \strong{collections}.}
-
-\item{crs}{An integer including the EPSG ID of the spatial reference system,
-which is passed to \code{\link[=st_crs]{st_crs()}}.}
-
 \item{p_tiles}{Character value passed to \code{\link[=addProviderTiles]{addProviderTiles()}}. The tiles
 used as background in the map.}
 }
 \description{
 Display of specimens' location in a leaflet widget. Markers sharing locations
 will be clustered.
-
-This function will coerce to a data fram using the function \code{\link[=as_data.frame]{as_data.frame()}}.
 }
 \examples{
 \dontrun{

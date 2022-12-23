@@ -41,7 +41,7 @@ view_table.specimens <- function(x,
                                  ),
                                  date_format = "%d.%m.%Y",
                                  ...) {
-  x <- as_data.frame(x)
+  x <- as(x, "data.frame")
   # format columns
   x$coll_date <- format(x$coll_date, date_format)
   # app

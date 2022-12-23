@@ -88,7 +88,7 @@ setClass("specimens",
         "are not allowed.'"
       ))
     }
-    if (class(object@collections$coll_date) != "Date") {
+    if (!is(object@collections$coll_date, "Date")) {
       return(paste(
         "Column 'coll_date' in slot 'collections'",
         "have to be of class 'Date'."
@@ -153,7 +153,7 @@ setClass("specimens",
         paste0(no_fk, collapse = "' '"), "'."
       ))
     }
-    if (class(object@history$det_date) != "Date") {
+    if (!is(object@history$det_date, "Date")) {
       return("Column 'det_date' in slot 'history' have to be of class 'Date'.")
     }
   }

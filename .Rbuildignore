@@ -8,6 +8,7 @@
 # other files and folders
 ^build-pkg$
 ^data-raw$
+^examples$
 ^README\.Rmd$
 ^README\.md$
 ^lab$

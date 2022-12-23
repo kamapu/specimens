@@ -8,8 +8,6 @@
 #' Display of specimens' location in a leaflet widget. Markers sharing locations
 #' will be clustered.
 #'
-#' This function will coerce to a data fram using the function [as_data.frame()].
-#'
 #' @param x A [specimens-class] object.
 #' @param add_cols A character vector with the names of columns to be displayed
 #'     in the popup labels of markers.
@@ -17,11 +15,6 @@
 #'     columns in the popup labels.
 #' @param date_format A character value indicating the format used for the
 #'     collection date. It is passed to the function [format.Date()].
-#' @param coords A character vector with the names of the columns containing the
-#'     coordinate values. Default adjusted to an object using the [sf][sf] at
-#'     the slot **collections**.
-#' @param crs An integer including the EPSG ID of the spatial reference system,
-#'     which is passed to [st_crs()].
 #' @param p_tiles Character value passed to [addProviderTiles()]. The tiles
 #'     used as background in the map.
 #' @param ... Further arguments passed among methods.
@@ -50,15 +43,15 @@ map_specimens.specimens <- function(x,
                                     ),
                                     sep = " | ",
                                     date_format = "%d.%m.%Y",
-                                    coords = c("longitude", "latitude"),
-                                    crs = 4326,
                                     p_tiles = "OpenStreetMap",
                                     ...) {
-  if (class(x@collections)[1] == "sf") {
+  if (is(x@collections, "sf")) {
     crs <- st_crs(x@collections, parameters = TRUE)$epsg
+  } else {
+    stop("Slot 'collections' in 'x' has to be of class 'sf'")
   }
-  x <- as_data.frame(x)
-  y <- x[, c("spec_id", coords)]
+  x <- as(x, "data.frame")
+  y <- x[, c("spec_id", "coord_x", "coord_y")]
   # format columns
   x$spec_id <- paste("spec: ", x$spec_id)
   x$coll_nr <- paste("coll: ", x$coll_nr)
@@ -70,7 +63,7 @@ map_specimens.specimens <- function(x,
   ))]), list(sep = sep)))
   # do map
   m <- y %>%
-    st_as_sf(coords = coords, crs = crs) %>%
+    st_as_sf(coords = c("coord_x", "coord_y"), crs = crs) %>%
     leaflet() %>%
     addProviderTiles(p_tiles) %>%
     addMarkers(
