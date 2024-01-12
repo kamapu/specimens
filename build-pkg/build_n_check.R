@@ -1,31 +1,29 @@
-# TODO:   Working script for testing the package 'taxlist'
+# TODO:   Working script for testing the package source
 # 
 # Author: Miguel Alvarez
 ################################################################################
 
 library(devtools)
 library(styler)
+library(rmarkdown)
 
-# Clean session
-rm(list = ls())
-
-# Clean folder
-unlink(file.path("build-pkg", list.files("build-pkg", ".tar.gz")))
-unlink(file.path("build-pkg", list.files("build-pkg", ".pdf")))
-
-# Write data
-## source("data-raw/create-data.R")
-
-# re-style scripts
+# Improve coding style
 style_pkg()
 
-# write documentation
+# Write system data and document
+source("data-raw/create-data.R")
 document()
 
-# Build and check package
-pkg_loc <- build(path = "build-pkg", args = "--resave-data")
+# clean built package and manual
+## Folder <- tempdir()
+Folder <- "build-pkg"
+Files <- list.files(Folder, ".tar.gz|.pdf")
+unlink(file.path(Folder, Files))
+
+# Build package and check
+pkg_loc <- build(path = Folder)
 check_built(path = pkg_loc)
 
-# write manual and install
-build_manual(path = "build-pkg")
+# a posteriori -----------------------------------------------------------------
+build_manual(path = Folder)
 install()
