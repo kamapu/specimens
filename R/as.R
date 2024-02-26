@@ -12,7 +12,7 @@
 #' newest one will be included in the data frame.
 #'
 #' @param from A [specimens-class] or a sf object.
-#' 
+#'
 #' @example examples/as.R
 #'
 #' @return

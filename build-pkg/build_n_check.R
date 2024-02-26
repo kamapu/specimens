@@ -11,7 +11,7 @@ library(rmarkdown)
 style_pkg()
 
 # Write system data and document
-source("data-raw/create-data.R")
+source("data-raw/import-data.R")
 document()
 
 # clean built package and manual
